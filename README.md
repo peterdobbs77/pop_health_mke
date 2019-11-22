@@ -8,6 +8,17 @@ Shape files for the aldermanic districts of MKE were downloaded from https://dat
 Shape files for the zip codes involved in mfdems.csv were downloaded from ftp://ftp2.census.gov/geo/tiger/TIGER2018/ZCTA5/
 
 
+## Requirement
+* Python 3.7.4 (32-bit)
+* packages:
+** requests
+** json
+** pandas
+** numpy
+** geopy
+** matplotlib
+** Shapely
+
 ## Milwaukee Data Initiative : https://milwaukeedata.org/
 
 ### Other Open Data Projects : https://milwaukeedata.org/blog/examples/
