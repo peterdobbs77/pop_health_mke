@@ -11,13 +11,13 @@ Shape files for the zip codes involved in mfdems.csv were downloaded from ftp://
 ## Requirement
 * Python 3.7.4 (32-bit)
 * packages:
-** requests
-** json
-** pandas
-** numpy
-** geopy
-** matplotlib
-** Shapely
+  * requests
+  * json
+  * pandas
+  * numpy
+  * geopy
+  * matplotlib
+  * Shapely
 
 ## Milwaukee Data Initiative : https://milwaukeedata.org/
 
