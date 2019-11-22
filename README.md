@@ -18,6 +18,7 @@ Shape files for the zip codes involved in mfdems.csv were downloaded from ftp://
   * geopy
   * matplotlib
   * Shapely
+  * pyshp
 
 ## Milwaukee Data Initiative : https://milwaukeedata.org/
 
