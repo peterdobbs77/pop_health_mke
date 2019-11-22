@@ -4,7 +4,6 @@ import pandas as pd
 import numpy as np
 from geopy.geocoders import Nominatim
 from matplotlib import pyplot as plt
-from shapely.geometry import Point, Polygon
 
 # API call to Open MKE Data for liquor license data
 url = "https://data.milwaukee.gov/api/3/action/datastore_search?resource_id=45c027b5-fa66-4de2-aa7e-d9314292093d&limit=5"
@@ -27,13 +26,20 @@ address = df[['HOUSE_NR', 'SDIR', 'STREET', 'STTYPE']].apply(
 # print(address)
 
 
-fig = plt.figure()
-plt.title('MKE Liqour Licenses')
-ax = plt.axes()
-ax.set_aspect('equal')
-
 geolocator = Nominatim(user_agent="App_Name")
-pts = []
+location = geolocator.geocode(address[0])
+print(location.address)
+print((location.latitude, location.longitude))
+print(location.raw)
+
+lat_long = []
 for loc in address:
     geoloc = geolocator.geocode(loc)
-    pts.append(Point((geoloc.longitude, geoloc.latitude))
+    lat_long.append(geoloc.raw)
+
+geolocations = pd.DataFrame(lat_long)
+
+fig = plt.figure(figsize=(12, 10))
+plt.title('MKE Liqour Licenses')
+plt.plot(geolocations[['lat', 'lon']])
+fig.savefig('./images/liqlic.png')
