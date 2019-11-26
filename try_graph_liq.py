@@ -13,7 +13,8 @@ from datetime import datetime
 def plot_shape(shp_path):
     shp = shapefile.Reader(shp_path)
 
-    fig = plt.figure(figsize=(12, 10))
+    fig = plt.figure(figsize=(5, 5))
+    plt.title('City of Milwaukee')
     ax = plt.axes()
     ax.set_aspect('equal')
 
@@ -42,7 +43,11 @@ def plot_shape(shp_path):
         # ax.annotate(shp.record(i)[1], xy=(center_x, center_y), color='tan',
         #             ha='center', va='center', fontsize=21)
 
-    plt.axis('off')
+    # SET VIEW TO WITHIN EXPECTED BOUNDS OF CITY OF MKE
+    plt.xlim(shp.bbox[0], shp.bbox[2])
+    plt.ylim(shp.bbox[1], shp.bbox[3])
+
+    plt.axis('on')
     plt.show()
     fig.savefig(
         './output/plot_shape_{}.png'.format(datetime.timestamp(datetime.now())))
@@ -53,7 +58,7 @@ def plot_locations_on_mke_map(points):
     # Initialize shape file for Milwaukee County Municipal Boundaries
     shp = shapefile.Reader("./shape/citylimit/citylimit")
 
-    fig = plt.figure(figsize=(15, 12))
+    fig = plt.figure(figsize=(5, 5))
     plt.title('City of Milwaukee')
     ax = plt.axes()
     ax.set_aspect('equal')
@@ -84,7 +89,7 @@ def plot_locations_on_mke_map(points):
         #             ha='center', va='center', fontsize=21)
 
     # ADD ADDRESS GEOCOORDINATES AS POINTS
-    plt.scatter(points.x, points.y, s=20, c="cyan")
+    # plt.scatter(points.x, points.y, s=20, c="cyan")
 
     # SET VIEW TO WITHIN EXPECTED BOUNDS OF CITY OF MKE
     # plt.xlim(shp.bbox[0], shp.bbox[2])
@@ -96,10 +101,11 @@ def plot_locations_on_mke_map(points):
     fig.savefig('./output/{}.png'.format(datetime.timestamp(datetime.now())))
 
 
-useApi = False
-limitApi = 400
+plot_shape('./shape/citylimit/citylimit')
+exit()
 
-# plot_shape('./shape/citylimit/citylimit')
+useApi = False
+limitApi = 200
 
 df = pd.read_csv('./data/liquorlicenses.csv')
 
